@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 //import CartItem from '../../models/cart-item';
 import Colors from '../../constants/Colors';
+import CartItem from '../../components/shop/CartItem';
 
 
 const CartScreen = props => {
@@ -25,14 +26,20 @@ const CartScreen = props => {
 
     return (
             <View style={styles.screen}>
+                <FlatList   data={cartItems} 
+                            keyExtractor={item => item.productId} 
+                            renderItem={itemData => <CartItem 
+                                                        quantity={itemData.item.quantity} 
+                                                        title={itemData.item.productTitle}
+                                                        amount={itemData.item.sum}
+                                                        onRemove={()=> {}}
+                                                        />} 
+                            />
                 <View style={styles.summary}>
-                    <Text style={styles.summaryText}>Total: <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text></Text>
                     <Button color={Colors.accent} 
                             title="Order" 
                             disabled={cartItems.length === 0} />
-                </View>
-                <View>
-                    <Text>Cart items</Text>
+                    <Text style={styles.summaryText}>Total: <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text></Text>
                 </View>
             </View>
     )
