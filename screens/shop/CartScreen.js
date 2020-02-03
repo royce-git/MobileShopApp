@@ -49,7 +49,7 @@ const CartScreen = props => {
                                 dispatch(ordersActions.addOrder(cartItems, cartTotalAmount))
                             }}
                             />
-                    <Text style={styles.summaryText}>Total: <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text></Text>
+                    <Text style={styles.summaryText}>Total: <Text style={styles.amount}>${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}</Text></Text>
                 </View>
             </View>
     )
